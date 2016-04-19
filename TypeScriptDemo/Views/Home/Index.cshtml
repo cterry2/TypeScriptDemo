@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Content/StyleSheet1.min.css" rel="stylesheet" />
+<div class="stats">
+    <div>
+        <label>
+            Player 1 <span class="player1winner"></span>
+            <input type="text" id="Player1"/>
+        </label>        
+    </div>
+    <div>
+        <label>
+            Points:
+            <span id="player1points"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            Player 2 <span class="player2winner"></span>
+            <input type="text" id="Player2"/>
+        </label>
+        </div>
+    <div>
+        <label>
+            Points:
+            <span id="player2points"></span>
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="button" id="start" value="Start Game" />
+            <input type="button" id="reset" value="Reset Game" />
+        </label>
+    </div>
+</div>
+<div class="board">
+    <div class="tile corner"></div>
+    <div class="tile middle"></div>
+    <div class="tile corner"></div>
+    <div class="tile middle"></div>
+    <div class="tile center"></div>
+    <div class="tile middle"></div>
+    <div class="tile corner"></div>
+    <div class="tile middle"></div>
+    <div class="tile corner"></div>
+</div>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script src="~/scripts/Game Files/BoardValue.js"></script>
+<script src="~/scripts/Game Files/Game.js"></script>
+<script src="~/scripts/Game Files/GameBoard.js"></script>
+<script src="~/scripts/Game Files/IGameBoard.js"></script>
+<script src="~/scripts/Game Files/IPlayer.js"></script>
+<script src="~/scripts/Game Files/Player.js"></script>
+<script src="~/scripts/Game Files/Player1.js"></script>
+<script src="~/scripts/Game Files/Player2.js"></script>
+
+<script>
+    var Game = new Game();
+</script>

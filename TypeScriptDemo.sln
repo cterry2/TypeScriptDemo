@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeScriptDemo", "TypeScriptDemo\TypeScriptDemo.csproj", "{AE09949E-B66E-4665-AD3F-0B456EE787D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypeScriptDemo.Tests", "TypeScriptDemo.Tests\TypeScriptDemo.Tests.csproj", "{227212A2-D5CD-41D4-B8AB-DC4AD802B048}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ABCB5C83-2460-4F9C-AAEC-2361B3ADE022}"
+	ProjectSection(SolutionItems) = preProject
+		WE-Markdown.css = WE-Markdown.css
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE09949E-B66E-4665-AD3F-0B456EE787D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE09949E-B66E-4665-AD3F-0B456EE787D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE09949E-B66E-4665-AD3F-0B456EE787D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE09949E-B66E-4665-AD3F-0B456EE787D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{227212A2-D5CD-41D4-B8AB-DC4AD802B048}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{227212A2-D5CD-41D4-B8AB-DC4AD802B048}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{227212A2-D5CD-41D4-B8AB-DC4AD802B048}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{227212A2-D5CD-41D4-B8AB-DC4AD802B048}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

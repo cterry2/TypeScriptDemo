@@ -1,0 +1,50 @@
+﻿body {
+    margin-top: 20px;
+}
+
+div {
+    margin-top: 10px;
+}
+
+.stats {
+    width: 25%;
+    display: inline-block;
+    height: 400px;
+    float: left;
+}
+
+.board {
+    background-color: darkgray;
+    text-align: center;
+    display: inline-block;
+    width: 74.5%;
+    float: left;
+}
+
+.tile {
+    width: 30%;
+    margin: 10px 1%;
+    background-color: lightgray;
+    height: 225px;
+    display: inline-block;
+    position:relative;
+
+    span{
+        position:absolute;
+        top: 125px;
+        margin-top: -112px;
+        left:54%;
+        margin-left: -25%;
+        font-size: 150px;
+        font-family: 'Times New Roman', Times, serif;
+        
+    }
+}
+
+input {
+    width: 100%;
+}
+
+#reset {
+    display: none;
+}
