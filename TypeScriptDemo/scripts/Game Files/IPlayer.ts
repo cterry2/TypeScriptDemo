@@ -2,8 +2,9 @@
     Name: string;
     Order: number;
     Score: number;
-    Draw(tile: JQuery): void;
-    LoadPlayerEvents(): void;
+    Draw(tile: HTMLElement): void;
+    UpdateScoreWithCorrectValue(event: EventListener): void;
     UpdateScore(amount: number): void;
     ResetPlayer(): void;
+    
 }

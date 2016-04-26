@@ -10,14 +10,14 @@ var Player2 = (function (_super) {
         this.UpdateScore(0);
     }
     Player2.prototype.Draw = function (tile) {
-        tile.attr("BoardValue", BoardValue.O);
-        tile.append("<span>O</span>");
-        tile.addClass("selected");
+        tile.setAttribute("BoardValue", BoardValue.O.toString());
+        tile.innerHTML = "<span>O</span>";
+        tile.classList.add("selected");
     };
     ;
     Player2.prototype.UpdateScore = function (amount) {
         _super.prototype.UpdateScore.call(this, amount);
-        $("#player2points").text(this.Score);
+        document.getElementById("player2points").textContent = this.Score.toString();
     };
     ;
     Player2.prototype.ResetPlayer = function () {
@@ -27,3 +27,4 @@ var Player2 = (function (_super) {
     ;
     return Player2;
 }(Player));
+//# sourceMappingURL=Player2.js.map

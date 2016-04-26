@@ -1,23 +1,16 @@
 var Player = (function () {
     function Player(name, order, baseScore) {
         var _this = this;
-        this.LoadPlayerEvents = function () {
-            var self = _this;
-            $(".middle").off("click").on("click", function () {
-                if ($(this).hasClass("selected"))
-                    return;
-                self.UpdateScore(2);
-            });
-            $(".corner").off("click").on("click", function () {
-                if ($(this).hasClass("selected"))
-                    return;
-                self.UpdateScore(1);
-            });
-            $(".center").off("click").on("click", function () {
-                if ($(this).hasClass("selected"))
-                    return;
-                self.UpdateScore(-2);
-            });
+        this.UpdateScoreWithCorrectValue = function (event) {
+            if (event.target.classList.contains("middle")) {
+                _this.UpdateScore(2);
+            }
+            if (event.target.classList.contains("corner")) {
+                _this.UpdateScore(1);
+            }
+            if (event.target.classList.contains("center")) {
+                _this.UpdateScore(-2);
+            }
         };
         this.Order = order;
         this.Name = name;
@@ -38,3 +31,4 @@ var Player = (function () {
     ;
     return Player;
 }());
+//# sourceMappingURL=Player.js.map

@@ -2,7 +2,7 @@ var GameBoard = (function () {
     function GameBoard() {
         var _this = this;
         this.DivideBoardForWinning = function () {
-            var tiles = $(".tile");
+            var tiles = document.getElementsByClassName("tile");
             var across1 = [tiles[0], tiles[1], tiles[2]];
             var across2 = [tiles[3], tiles[4], tiles[5]];
             var across3 = [tiles[6], tiles[7], tiles[8]];
@@ -18,7 +18,7 @@ var GameBoard = (function () {
             for (var i = 0; i < _this.GroupsOfTiles.length; i++) {
                 var total = 0;
                 for (var x = 0; x < _this.GroupsOfTiles[i].length; x++) {
-                    total += parseInt($(_this.GroupsOfTiles[i][x]).attr("BoardValue") || "0");
+                    total += parseInt(_this.GroupsOfTiles[i][x].getAttribute("BoardValue") || "0");
                 }
                 if (total > 11)
                     count++;
@@ -27,8 +27,13 @@ var GameBoard = (function () {
             }
             return count == 8 ? 8 : 0;
         };
-        $(".tile").removeClass("selected").text("").attr("BoardValue", "0");
+        var tiles = document.getElementsByClassName("tile");
+        for (var i = 0; i < tiles.length; i++) {
+            tiles[i].classList.remove("selected");
+            tiles[i].setAttribute("BoardValue", "0");
+        }
         this.DivideBoardForWinning();
     }
     return GameBoard;
 }());
+//# sourceMappingURL=GameBoard.js.map

@@ -1,13 +1,19 @@
 ﻿class GameBoard implements IGameBoard {
-    GroupsOfTiles: Array<Array<HTMLElement>>;
+    GroupsOfTiles: Array<Array<Element>>;
 
     constructor() {
-        $(".tile").removeClass("selected").text("").attr("BoardValue", "0");
+        var tiles = document.getElementsByClassName("tile");
+
+        for (var i = 0; i < tiles.length; i++) {
+            tiles[i].classList.remove("selected");
+            tiles[i].setAttribute("BoardValue", "0");
+        }
+                    
         this.DivideBoardForWinning();
     }
 
     public DivideBoardForWinning = () => {
-        var tiles = $(".tile");
+        var tiles = document.getElementsByClassName("tile");
 
         var across1 = [tiles[0], tiles[1], tiles[2]];
         var across2 = [tiles[3], tiles[4], tiles[5]];
@@ -28,7 +34,7 @@
         for (var i = 0; i < this.GroupsOfTiles.length; i++) {
             var total = 0;
             for (var x = 0; x < this.GroupsOfTiles[i].length; x++) {
-                total += parseInt($(this.GroupsOfTiles[i][x]).attr("BoardValue") || "0");
+                total += parseInt(this.GroupsOfTiles[i][x].getAttribute("BoardValue") || "0");
             }
 
             if (total > 11) count++;

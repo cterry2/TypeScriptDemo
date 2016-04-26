@@ -10,7 +10,7 @@
     }
 
     // This will be overloaded later
-    public Draw(tile: JQuery): void {
+    public Draw(tile: HTMLElement): void {
     };
 
     // This will be overloaded later
@@ -20,26 +20,19 @@
 
     // This will be overloaded later
     public ResetPlayer(): void {
-    };
+    };    
 
-    public LoadPlayerEvents = () => {
-        var self = this;
+    public UpdateScoreWithCorrectValue = (event) => {        
+        if (event.target.classList.contains("middle")) {
+            this.UpdateScore(2);
+        }
 
-        $(".middle").off("click").on("click", function () {
-            if ($(this).hasClass("selected")) return;
-            self.UpdateScore(2);
-        });
+        if (event.target.classList.contains("corner")) {
+            this.UpdateScore(1);
+        }
 
-        $(".corner").off("click").on("click", function () {
-            if ($(this).hasClass("selected")) return;
-            self.UpdateScore(1);
-        });
-
-        $(".center").off("click").on("click", function () {
-            if ($(this).hasClass("selected")) return;
-            self.UpdateScore(-2);
-        });
-    };
-
-    
+        if (event.target.classList.contains("center")) {
+            this.UpdateScore(-2);
+        }
+    }    
 }

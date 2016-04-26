@@ -4,15 +4,15 @@
         this.UpdateScore(0);
     }
 
-    public Draw(tile: JQuery): void {
-        tile.attr("BoardValue", BoardValue.X);
-        tile.append("<span>X</span>");
-        tile.addClass("selected");
+    public Draw(tile: HTMLElement): void {
+        tile.setAttribute("BoardValue", BoardValue.X.toString());
+        tile.innerHTML = "<span>X</span>";
+        tile.classList.add("selected");
     };
 
     public UpdateScore(amount: number): void {
         super.UpdateScore(amount);
-        $("#player1points").text(this.Score);
+        document.getElementById("player1points").textContent = this.Score.toString();
     };
 
     public ResetPlayer(): void {

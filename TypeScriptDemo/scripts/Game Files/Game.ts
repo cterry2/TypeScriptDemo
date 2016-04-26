@@ -13,112 +13,120 @@
         if (!this.DoesPlayerExist(1)) {
             this.Players.push(new Player1(event.target.value));
         } else {
-            this.ChangePlayerName(1, event.target.val());
+            this.ChangePlayerName(1, event.target.value);
         }
     };
+
+    private UpdateOrCreatePlayer2 = (event) => {
+        if (!this.DoesPlayerExist(2)) {
+            this.Players.push(new Player2(event.target.value));
+        } else {
+            this.ChangePlayerName(2, event.target.value);
+        }
+    }
+
+    private StartGame = () => {
+        if (this.Players.length > 1) {
+            this.PlayGame();
+        }
+    }
 
     public LoadBoardEvents = () => {
         var self = this
 
         document.getElementById("Player1").removeEventListener("blur", this.UpdateOrCreatePlayer1, false);
         document.getElementById("Player1").addEventListener("blur", this.UpdateOrCreatePlayer1, false);
+        
+        document.getElementById("Player2").removeEventListener("blur", this.UpdateOrCreatePlayer2, false);
+        document.getElementById("Player2").addEventListener("blur", this.UpdateOrCreatePlayer2, false);
 
-        //$("#Player1").off("blur").on("blur", function () {
-        //    if (!self.DoesPlayerExist(1)) {
-        //        self.Players.push(new Player1($(this).val()));
-        //    } else {
-        //        self.ChangePlayerName(1, $(this).val());
-        //    }
-        //});
+        document.querySelector("#start").removeEventListener("click", this.StartGame, false);
+        document.querySelector("#start").addEventListener("click", this.StartGame, false);
 
-        $("#Player2").off("blur").on("blur", function () {
-            if (!self.DoesPlayerExist(2)) {
-                self.Players.push(new Player2($(this).val()));
-            } else {
-                self.ChangePlayerName(2, $(this).val());
-            }
-        });
-
-        $(".stats").off("click", "#start:visible").on("click", "#start:visible", function () {
-            if (self.Players.length > 1) {
-                self.PlayGame();
-            }
-        });
-
-        $(".stats").off("click", "#reset:visible").on("click", "#reset:visible", function () {
-            self.ResetGame();
-        });
+        document.querySelector("#reset").removeEventListener("click", this.ResetGame, false);
+        document.querySelector("#reset").addEventListener("click", this.ResetGame, false);        
     };
+
+    private RemoveClick = () => {
+        var tiles = document.getElementsByClassName("tile");
+        for (var i = 0; i < tiles.length; i++) {
+            tiles[i].removeEventListener("click", this.SelectCell);
+        } 
+    }
 
     public ResetGame = () => {
         for (var i = 0; i < this.Players.length; i++) {
             this.Players[i].ResetPlayer();
         }
 
-        $(".board").off("click", ".tile:not(.selected)")
+        var tiles = document.getElementsByClassName("tile");
+        for (var i = 0; i < tiles.length; i++) {
+            tiles[i].innerHTML = "";
+        }
+        this.RemoveClick();
 
         this.Board = new GameBoard();
-        $(".player1winner").text("");
-        $(".player2winner").text("");
-        //$("#start").show();
+        document.getElementsByClassName("player1winner")[0].textContent = "";
+        document.getElementsByClassName("player2winner")[0].textContent = "";
+        
         document.getElementById("start").style.display = "block";
-        document.getElementById("reset").style.display = "none";
-        //$("#reset").hide();
+        document.getElementById("reset").style.display = "none";        
     };
 
     public PlayGame = () => {
         var self = this;
 
-        this.ActivePlayer = this.Players[0];
-        this.ActivePlayer.LoadPlayerEvents();
+        this.ActivePlayer = this.Players[0];        
 
-        $(".board").off("click", ".tile:not(.selected)").on("click", ".tile:not(.selected)", function () {
-            self.ActivePlayer.Draw($(this));
-            var winner = self.Board.ValidateWinner();            
-
-            if (winner) {
-                $(".board").off("click", ".tile:not(.selected)");
-                if (winner !== 8) {
-                    self.ActivePlayer.UpdateScore(4);
-                }
-                $(".player1winner").text(self.Players[0].Score > self.Players[1].Score ? "WINNER!!" : "LOSER!!");
-                $(".player2winner").text(self.Players[0].Score < self.Players[1].Score ? "WINNER!!" : "LOSER!!");
-                if (self.Players[0].Score === self.Players[1].Score) {
-                    $(".player1winner,.player2winner").text("True Tie!!")
-                }
-            } else {
-                self.SwitchPlayers();
-            }
-        });
-
-        //$("#start").hide();
+        var tiles = document.getElementsByClassName("tile");
+        for (var i = 0; i < tiles.length; i++) {
+            tiles[i].addEventListener("click", this.SelectCell);
+        }
+                
         document.getElementById("start").style.display = "none";
-        document.getElementById("reset").style.display = "block";
-        //$("#reset").show();
+        document.getElementById("reset").style.display = "block";        
     };
+
+    private SelectCell = (event) => {        
+        if (event.target.classList.contains("selected") || event.target.nodeName === "SPAN") return;
+        
+        this.ActivePlayer.Draw(event.target);
+        this.ActivePlayer.UpdateScoreWithCorrectValue(event);
+        var winner = this.Board.ValidateWinner();
+
+        if (winner) {
+            this.RemoveClick();
+
+            if (winner !== 8) {
+                this.ActivePlayer.UpdateScore(4);
+            }
+            document.getElementsByClassName("player1winner")[0].textContent = (this.Players[0].Score > this.Players[1].Score ? "WINNER!!" : "LOSER!!");
+            document.getElementsByClassName("player2winner")[0].textContent = (this.Players[0].Score < this.Players[1].Score ? "WINNER!!" : "LOSER!!");
+            if (this.Players[0].Score === this.Players[1].Score) {
+                document.getElementsByClassName("player1winner")[0].textContent = "True Tie!!";
+                document.getElementsByClassName("player2winner")[0].textContent = "True Tie!!";                
+            }
+        } else {
+            this.SwitchPlayers();
+        }        
+    }
 
     public SwitchPlayers = () => {
         if (this.ActivePlayer.Order === this.Players.length) {
             this.ActivePlayer = this.Players[0];
         } else {
             this.ActivePlayer = this.Players[this.ActivePlayer.Order];
-        }
-
-        this.ActivePlayer.LoadPlayerEvents();
+        }        
     };
 
-    public DoesPlayerExist = (order: number) => {
+    public DoesPlayerExist = (order: number) => {        
         for (var i = 0; i < this.Players.length; i++) {
             if (this.Players[i].Order == order) return true;
         }
 
         return false;
     };
-
-    private MyFunction(myVariable): void {
-
-    };
-
+    
     public ChangePlayerName = (order: number, name: string) => {
         for (var i = 0; i < this.Players.length; i++) {
             if (this.Players[i].Order == order && this.Players[i].Name !== name) this.Players[i].Name = name;
