@@ -3,13 +3,13 @@ var Player = (function () {
         var _this = this;
         this.UpdateScoreWithCorrectValue = function (event) {
             if (event.target.classList.contains("middle")) {
-                _this.UpdateScore(2);
+                _this.UpdateScore(BoardLayout.Middle);
             }
             if (event.target.classList.contains("corner")) {
-                _this.UpdateScore(1);
+                _this.UpdateScore(BoardLayout.Corner);
             }
             if (event.target.classList.contains("center")) {
-                _this.UpdateScore(-2);
+                _this.UpdateScore(BoardLayout.Center);
             }
         };
         this.Order = order;

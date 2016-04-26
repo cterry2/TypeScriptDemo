@@ -192,6 +192,7 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\Game Files\BoardLayout.ts" />
     <TypeScriptCompile Include="scripts\Game Files\Game.ts" />
     <TypeScriptCompile Include="scripts\Game Files\GameBoard.ts" />
     <TypeScriptCompile Include="scripts\Game Files\IGameBoard.ts" />

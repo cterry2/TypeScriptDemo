@@ -24,15 +24,15 @@
 
     public UpdateScoreWithCorrectValue = (event) => {        
         if (event.target.classList.contains("middle")) {
-            this.UpdateScore(2);
+            this.UpdateScore(BoardLayout.Middle);
         }
 
         if (event.target.classList.contains("corner")) {
-            this.UpdateScore(1);
+            this.UpdateScore(BoardLayout.Corner);
         }
 
         if (event.target.classList.contains("center")) {
-            this.UpdateScore(-2);
+            this.UpdateScore(BoardLayout.Center);
         }
     }    
 }
